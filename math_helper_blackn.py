@@ -33,6 +33,17 @@ def unitCircle(trigOp, numer, denom):
         raise ValueError("not a valid trigonometric operation.")
     if degAngle in referenceAngles:
             radicalMode = True
+    if trigOp = "sine" or trigOp == "sin":
+        if referenceAngle == 0:
+            answerRadical = "0"
+            answerDecimal = 0
+        if referenceAngle == 30:
+            answerRadical = "1/2"
+            answerDecimal = 0.5
+        if referenceAngle == 45:
+            answerRadical = "sqrt(2)/2"
+            answerDecimal = 0.707
+        if referenceAngle 
     
     
     

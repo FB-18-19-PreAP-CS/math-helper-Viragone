@@ -31,6 +31,9 @@ def unitCircle(trigOp, numer, denom):
         raise ValueError("point is not on the unit circle.")
     if trigOp not in trigOperations:
         raise ValueError("not a valid trigonometric operation.")
+    if degAngle in referenceAngles:
+            radicalMode = True
+    
     
     
     

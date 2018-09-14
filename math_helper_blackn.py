@@ -3,6 +3,18 @@
 
 
 
+class Fraction():
+    def __init__(self, numerator, denominator):
+        self.numerator = numerator
+        self.denominator = denominator
+    def flip(self):
+        helper = self.numerator
+        self.numerator = self.denominator
+        self.denominator = helper
+    def __str__(self):
+        print(str(numerator) + "/" + str(denominator))
+        
+        
 
 
 
@@ -33,7 +45,7 @@ def unitCircle(trigOp, numer, denom):
         raise ValueError("not a valid trigonometric operation.")
     if degAngle in referenceAngles:
             radicalMode = True
-    if trigOp = "sine" or trigOp == "sin":
+    if trigOp == "sine" or trigOp == "sin":
         if referenceAngle == 0:
             answerRadical = "0"
             answerDecimal = 0

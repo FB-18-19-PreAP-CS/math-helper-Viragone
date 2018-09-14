@@ -12,7 +12,7 @@ class Fraction():
         self.numerator = self.denominator
         self.denominator = helper
         if type(self.denominator) == Radical:
-            self.numerator = self.numerator * self.denominator.radicand()
+            self.numerator = "self.numerator" +  self.denominator.radicand()
             self.denominator = self.denominator.square() 
     def __str__(self):
         if denominator == 0:
@@ -152,39 +152,39 @@ def unitCircle(trigOp, numer, denom):
                 answerDecimal = (((1 / answerDecimal) * 1000) % 1) / 1000
     else:
         if referenceAngle == 0:
-            answerRadical = Fraction(1, 1)
-            answerDecimal = 1.0
-            if trigOp == "secant" or trigOp == "sec":
-                answerRadical = answerRadical.flip()
-                answerDecimal = 1.0
-        elif referenceAngle == 30:
-            answerRadical = Fraction(Radical(3), 2)
-            answerDecimal = 0.866
-            if trigOp == "secant" or trigOp == "sec":
-                answerRadical = answerRadical.flip()
-                answerDecimal = 1.155
-        elif referenceAngle == 45:
-            answerRadical = Fraction(Radical(2), 2)
-            answerDecimal = 0.707
-            if trigOp == "secant" or trigOp == "sec":
-                answerRadical = answerRadical.flip()
-                answerDecimal = 1.414
-        elif referenceAngle == 60:
-            answerRadical = Fraction(1, 2)
-            answerDecimal = 0.5
-            if trigOp == "secant" or trigOp == "sec":
-                answerRadical = answerRadical.flip()
-                answerDecimal = 2
-        elif referenceAngle == 90:
             answerRadical = Fraction(0, 1)
-            answerDecimal = 0
-            if trigOp == "secant" or trigOp == "sec":
+            answerDecimal = 0.0
+            if trigOp == "cotangent" or trigOp == "cot":
                 answerRadical = answerRadical.flip()
                 answerDecimal = "undefined (-)"
+        elif referenceAngle == 30:
+            answerRadical = Fraction(1, Radical(3)) 
+            answerDecimal = 0.577
+            if trigOp == "cotangent" or trigOp == "cot":
+                answerRadical = answerRadical.flip()
+                answerDecimal = 1.732
+        elif referenceAngle == 45:
+            answerRadical = Fraction(1,1)
+            answerDecimal = 1.0
+            if trigOp == "cotangent" or trigOp == "cot":
+                answerRadical = answerRadical.flip()
+                answerDecimal = 1.0
+        elif referenceAngle == 60:
+            answerRadical = Fraction(Radical(3), 1)
+            answerDecimal = 1.732
+            if trigOp == "cotangent" or trigOp == "cot":
+                answerRadical = answerRadical.flip()
+                answerDecimal = 0.577
+        elif referenceAngle == 90:
+            answerRadical = Fraction(1,0)
+            answerDecimal = "undefined (-)"
+            if trigOp == "cotangent" or trigOp == "cot":
+                answerRadical = answerRadical.flip()
+                answerDecimal = 0.0
         else:
             radians = math.radians(referenceAngle)
-            answerDecimal = (((math.cos(radians)) * 1000) % 1) / 1000
-            if trigOp == "secant" or trigOp == "sec":
+            answerDecimal = (((math.tan(radians)) * 1000) % 1) / 1000
+            if trigOp == "cotangent" or trigOp == "cot":
                 answerDecimal = (((1 / answerDecimal) * 1000) % 1) / 1000
         
         

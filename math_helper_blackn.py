@@ -4,42 +4,42 @@
 
 
 class Fraction():
-    def __init__(self, numerator, denominator):
-        self.numerator = numerator
-        self.denominator = denominator
-    def flipandsimplify(self):
-        helper = self.numerator
-        self.numerator = self.denominator
-        self.denominator = helper
-        if type(self.denominator) == Radical:
-            if self.numerator == 1:
-                self.numerator = self.denominator.radicand()
+    def __init__(self, num, den):
+        self.num = num
+        self.den = den
+    def flip(self):
+        helper = str(self.numerator)
+        self.num = self.den
+        self.den = helper
+        if type(self.den) == Radical:
+            if self.num == 1:
+                self.num = str(self.den.rad())
             else:  
-                self.numerator = "self.numerator" +  self.denominator.radicand()
-            self.denominator = self.denominator.square() 
+                self.num = self.num +  str(self.den.rad())
+            self.den = self.den.square() 
     def __str__(self):
-        if denominator == 0:
-            print("undefined (-)")
-        if numerator == denominator:
-            print("1")
-        elif denominator == 1:
-            print(numerator)
+        if self.den == 0:
+            return "undefined (-)"
+        if self.num == self.den:
+            return "1"
+        elif self.den == 1:
+            return str(self.num)
         else:
-            print(str(numerator) + "/" + str(denominator))
+            return str(self.num) + "/" + str(self.den)
     def numerator(self):
-        return self.numerator
+        return self.num
     def denominator(self):
-        return self.denominator
+        return self.den
     
 class Radical():
     def __init__(self, radicand):
         self.radicand = radicand
-    def radicand(self):
-        return radicand
+    def rad(self):
+        return self.radicand
     def square(self):
-        return radicand
+        return self.radicand
     def __str__(self):
-        print("root(" + randicand + ")")
+        return "root(" + str(self.radicand) + ")"
         
         
         
@@ -57,12 +57,14 @@ def unitCircle(trigOp, numer, denom):
              (  denom   )                                          '''
     
     referenceAngles = [0, 30, 45, 60, 90]
-    trigOperations = ["sine", "sin", "cosine", "cos", "tangent", "tan", "cosecant", "csc", "secant", "sec", "cotangent", "tan"]
+    trigOperations = ["sine", "sin", "cosine", "cos", "tangent", "tan", "cosecant", "csc", "secant", "sec", "cotangent", "cot"]
     degAngle = ((numer//1) * 180) // (denom//1)
+    trigOp = trigOp.lower()
     if degAngle > 360 or degAngle < 0 or numer < 0 or denom <= 0:
         raise ValueError("point is not on the unit circle.")
     if trigOp not in trigOperations:
         raise ValueError("not a valid trigonometric operation.")
+    negativeMode = False
     if degAngle <= 90:
         referenceAngle = degAngle
     elif degAngle <= 180:
@@ -77,7 +79,7 @@ def unitCircle(trigOp, numer, denom):
         if trigOp == "sine" or trigOp == "sin" or trigOp == "tangent"  or trigOp == "tan" or trigOp == "cosecant" or trigOp == "csc" or trigOp == "cotangent" or trigOp == "cot":
             negativeMode = True
         referenceAngle = 360 - degAngle
-    if degAngle in referenceAngles:
+    if referenceAngle in referenceAngles:
         radicalMode = True
     else:
         radicalMode = False
@@ -125,7 +127,7 @@ def unitCircle(trigOp, numer, denom):
                 answerRadical = answerRadical.flip()
                 answerDecimal = 1
         elif referenceAngle == 30:
-            answerRadical = Fraction(Radical(3), 2)
+            answerRadical = Fraction(Radical(3), 2) 
             answerDecimal = 0.866
             if trigOp == "secant" or trigOp == "sec":
                 answerRadical = answerRadical.flip()
@@ -192,17 +194,17 @@ def unitCircle(trigOp, numer, denom):
                 
     if radicalMode == True:
         if negativeMode == True:
-            answer = "decimal: -" + answerDecimal + "\nradical: -" + answerRadical
+            answer = "decimal: -" + str(answerDecimal) + "     radical: -" + str(answerRadical)
             return answer
         else:
-            answer = "decimal: " + answerDecimal + "\nradical: " + answerRadical
+            answer = "decimal: " + str(answerDecimal) + "     radical: " + str(answerRadical)
             return answer
     else:
         if negativeMode == True:
-            answer = "decimal: -" + answerDecimal
+            answer = "decimal: -" + str(answerDecimal)
             return answer
         else:
-            answer = "decimal: " + answerDecimal
+            answer = "decimal: " + str(answerDecimal)
             return answer
             
             

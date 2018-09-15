@@ -205,14 +205,14 @@ def unitCircle(trigOp, numer, denom):
                 answerDecimal = (((1 / answerDecimal) * 1000) % 1) / 1000
                 
     if radicalMode == True:
-        if negativeMode == True:
+        if negativeMode == True and str(answerDecimal) != "0":
             answer = "decimal: -" + str(answerDecimal) + "     radical: -" + str(answerRadical)
             return answer
         else:
             answer = "decimal: " + str(answerDecimal) + "     radical: " + str(answerRadical)
             return answer
     else:
-        if negativeMode == True:
+        if negativeMode == True and str(answerDecimal) != "0":
             answer = "decimal: -" + str(answerDecimal)
             return answer
         else:

@@ -66,7 +66,23 @@ def unitCircle(trigOp, numer, denom):
        
              (numer * pi)
        trigOp(----------)
-             (  denom   )                                          '''
+             (  denom   )
+             
+       
+       >>>unitCircle("cos", 5,6)
+       decimal: -0.866     radical: -root(3)/2
+       
+       >>>unitCircle("sec", 5, 6)
+       decimal: -1.155     radical: -2root(3)/3
+       
+       >>>unitCircle("csc",2,1)
+       decimal: undefined (-)     radical: undefined (-)
+       
+       >>>unitCircle("csc",1,4)
+       decimal: 1.414     radical: root(2)
+       
+       >>>unitCircle("sin",1,9)
+       decimal: 0.342                                                 '''
     
     referenceAngles = [0, 30, 45, 60, 90]
     trigOperations = ["sine", "sin", "cosine", "cos", "tangent", "tan", "cosecant", "csc", "secant", "sec", "cotangent", "cot"]
@@ -205,14 +221,14 @@ def unitCircle(trigOp, numer, denom):
                 answerDecimal = (((1 / answerDecimal) * 1000) // 1) / 1000
                 
     if radicalMode == True:
-        if negativeMode == True and str(answerDecimal) != "0":
+        if negativeMode == True and str(answerDecimal) != "0" and str(answerDecimal) != "undefined (-)":
             answer = "decimal: -" + str(answerDecimal) + "     radical: -" + str(answerRadical)
             return answer
         else:
             answer = "decimal: " + str(answerDecimal) + "     radical: " + str(answerRadical)
             return answer
     else:
-        if negativeMode == True and str(answerDecimal) != "0":
+        if negativeMode == True and str(answerDecimal) != "0" and str(answerDecimal) != "undefined (-)" :
             answer = "decimal: -" + str(answerDecimal)
             return answer
         else:
@@ -222,7 +238,7 @@ def unitCircle(trigOp, numer, denom):
         
         
 def main():
-    print(unitCircle("tan",157,180))
+    pass
     
 if __name__ == "__main__":
     main()

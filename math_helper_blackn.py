@@ -7,22 +7,34 @@ class Fraction():
     def __init__(self, num, den):
         self.num = num
         self.den = den
-    def flip(self):
-        helper = str(self.numerator)
-        self.num = self.den
-        self.den = helper
         if type(self.den) == Radical:
             if self.num == 1:
-                self.num = str(self.den.rad())
+                self.num = Radical(self.den.rad())
             else:  
-                self.num = self.num +  str(self.den.rad())
-            self.den = self.den.square() 
+                self.num = self.num + "root(" + str(self.den.rad()) + ")"
+            self.den = self.den.square()
+    def flip(self):
+        helper = self.num
+        self.num1 = str(self.den)
+        self.den1 = helper
+        if type(self.den1) == Radical:
+            if self.num1 == "1":
+                self.num = "root(" + str(self.den1.rad()) +")"
+                self.den = self.den1.square()
+                return Fraction(self.num, self.den)
+            else:  
+                self.num = self.num1 +  "root(" + str(self.den1.rad()) + ")"
+                self.den = self.den1.square()
+                if str(self.num1) == str(self.den1.square()):
+                    return Fraction(Radical(str(self.num1)), "1")
+                return Fraction(self.num, self.den)
+        return Fraction(self.num1, self.den1)
     def __str__(self):
         if self.den == 0:
             return "undefined (-)"
         if self.num == self.den:
             return "1"
-        elif self.den == 1:
+        elif self.den == "1" or self.den == 1:
             return str(self.num)
         else:
             return str(self.num) + "/" + str(self.den)
@@ -91,7 +103,7 @@ def unitCircle(trigOp, numer, denom):
                 answerRadical = answerRadical.flip()
                 answerDecimal = "undefined (-)"
         elif referenceAngle == 30:
-            answerRadical = Fraction(1, 2)
+            answerRadical = Fraction(1,2)
             answerDecimal = 0.5
             if trigOp == "cosecant" or trigOp == "csc":
                 answerRadical = answerRadical.flip()
@@ -206,6 +218,14 @@ def unitCircle(trigOp, numer, denom):
         else:
             answer = "decimal: " + str(answerDecimal)
             return answer
+        
+        
+        
+def main():
+    print(unitCircle("cot",1,6))
+    
+if __name__ == "__main__":
+    main()
             
             
         

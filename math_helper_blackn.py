@@ -1,4 +1,4 @@
-
+import math
  
 
 
@@ -128,9 +128,9 @@ def unitCircle(trigOp, numer, denom):
                 answerDecimal = 1
         else:
             radians = math.radians(referenceAngle)
-            answerDecimal = (((math.sin(radians)) * 100) % 1) / 100
+            answerDecimal = (((math.sin(radians)) * 1000) // 1) / 1000
             if trigOp == "cosecant" or trigOp == "csc":
-                answerDecimal = (((1 / answerDecimal) * 100) % 1) / 100
+                answerDecimal = (((1 / answerDecimal) * 1000) // 1) / 1000
     elif trigOp == "cosine" or trigOp == "cos" or trigOp == "secant" or trigOp == "sec":
         if referenceAngle == 0:
             answerRadical = Fraction(1, 1)
@@ -164,9 +164,9 @@ def unitCircle(trigOp, numer, denom):
                 answerDecimal = "undefined (-)"
         else:
             radians = math.radians(referenceAngle)
-            answerDecimal = (((math.cos(radians)) * 1000) % 1) / 1000
+            answerDecimal = (((math.cos(radians)) * 1000) // 1) / 1000
             if trigOp == "secant" or trigOp == "sec":
-                answerDecimal = (((1 / answerDecimal) * 1000) % 1) / 1000
+                answerDecimal = (((1 / answerDecimal) * 1000) // 1) / 1000
     else:
         if referenceAngle == 0:
             answerRadical = Fraction(0, 1)
@@ -200,9 +200,9 @@ def unitCircle(trigOp, numer, denom):
                 answerDecimal = 0
         else:
             radians = math.radians(referenceAngle)
-            answerDecimal = (((math.tan(radians)) * 1000) % 1) / 1000
+            answerDecimal = (((math.tan(radians)) * 1000) // 1) / 1000
             if trigOp == "cotangent" or trigOp == "cot":
-                answerDecimal = (((1 / answerDecimal) * 1000) % 1) / 1000
+                answerDecimal = (((1 / answerDecimal) * 1000) // 1) / 1000
                 
     if radicalMode == True:
         if negativeMode == True and str(answerDecimal) != "0":
@@ -222,7 +222,7 @@ def unitCircle(trigOp, numer, denom):
         
         
 def main():
-    print(unitCircle("cot",1,6))
+    print(unitCircle("tan",157,180))
     
 if __name__ == "__main__":
     main()

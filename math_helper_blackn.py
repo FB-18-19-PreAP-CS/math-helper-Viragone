@@ -46,12 +46,17 @@ class Fraction():
 class Radical():
     def __init__(self, radicand):
         self.radicand = radicand
+        self.unsimplified = True
+        self.outsideRadical = 1
     def rad(self):
         return self.radicand
     def square(self):
         return self.radicand
     def __str__(self):
-        return "root(" + str(self.radicand) + ")"
+        if self.unsimplified == True:
+            return "root(" + str(self.radicand) + ")"
+        else:
+            return self.outsideRadical + "root(" + str(self.radicand) + ")"
         
         
         
@@ -236,6 +241,21 @@ def unitCircle(trigOp, numer, denom):
         else:
             answer = "decimal: " + str(answerDecimal)
             return answer
+        
+def quadraticFormula(a,b,c):
+    '''docstrings go here, I'll do them eventually I promise'''
+    
+    decimalAnswer1 = (((((-b + math.sqrt(b**2-4*a*c)) / 2*a) * 1000) // 1) / 1000)
+    radicalAnswer1 = ""
+    decimalAnswer2 = (((((-b - math.sqrt(b**2-4*a*c)) / 2*a) * 1000) // 1) / 1000)
+    radicalAnswer2 = ""
+    stringAnswer1 = "radical: " + str(decimalAnswer1) + "     radical: " + str(radicalAnswer1)
+    
+    
+        
+
+        
+
         
         
         

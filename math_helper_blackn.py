@@ -70,19 +70,21 @@ def unitCircle(trigOp, numer, denom):
              
        
        >>> unitCircle("cos", 5,6)
-       decimal: -0.866     radical: -root(3)/2
+       'decimal: -0.866     radical: -root(3)/2'
        
        >>> unitCircle("sec", 5, 6)
-       decimal: -1.155     radical: -2root(3)/3
+       'decimal: -1.155     radical: -2root(3)/3'
        
        >>> unitCircle("csc",2,1)
-       decimal: undefined (-)     radical: undefined (-)
+       'decimal: undefined (-)     radical: undefined (-)'
        
        >>> unitCircle("csc",1,4)
-       decimal: 1.414     radical: root(2)
+       'decimal: 1.414     radical: root(2)'
        
        >>> unitCircle("sin",1,9)
-       decimal: 0.342                                                 '''
+       'decimal: 0.342'
+       
+    '''
     
     referenceAngles = [0, 30, 45, 60, 90]
     trigOperations = ["sine", "sin", "cosine", "cos", "tangent", "tan", "cosecant", "csc", "secant", "sec", "cotangent", "cot"]

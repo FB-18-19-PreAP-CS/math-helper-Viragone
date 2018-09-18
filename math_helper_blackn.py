@@ -46,17 +46,12 @@ class Fraction():
 class Radical():
     def __init__(self, radicand):
         self.radicand = radicand
-        self.unsimplified = True
-        self.outsideRadical = 1
     def rad(self):
         return self.radicand
     def square(self):
         return self.radicand
     def __str__(self):
-        if self.unsimplified == True:
-            return "root(" + str(self.radicand) + ")"
-        else:
-            return self.outsideRadical + "root(" + str(self.radicand) + ")"
+        return "root(" + str(self.radicand) + ")"
         
         
         
@@ -242,21 +237,53 @@ def unitCircle(trigOp, numer, denom):
             answer = "decimal: " + str(answerDecimal)
             return answer
         
-def quadraticFormula(a,b,c):
-    '''docstrings go here, I'll do them eventually I promise'''
-    
-    decimalAnswer1 = (((((-b + math.sqrt(b**2-4*a*c)) / 2*a) * 1000) // 1) / 1000)
-    radicalAnswer1 = ""
-    decimalAnswer2 = (((((-b - math.sqrt(b**2-4*a*c)) / 2*a) * 1000) // 1) / 1000)
-    radicalAnswer2 = ""
-    stringAnswer1 = "radical: " + str(decimalAnswer1) + "     radical: " + str(radicalAnswer1)
-    
-    
+def pointsToPointSLope(x1,y1,x2,y2):
+    ''' returns, given two points, the equation of the line
+        in point-slope form, the preferred linear equation
+        form on the AP Calculus AB exam
         
-
+        >>> pointsToPointSlope(0,0,0,0)
+        'x = 0'
         
-
+        >>> pointsToPointSlope(2,3,9,3)
+        'y = 3'
         
+        >>> pointsToPointSlope(2,3,9,4)
+        'y - 3 = 1/7(x - 2)'
+        
+        >>> pointsToPointSlope(2,3.1,9,9.2)
+        'y - 3.1 = 0.871(x - 2)
+        
+        >>> pointsToPointSlope(1,2,6,12)
+        '
+    '''
+    if x2 - x1 == 0:
+        x = x2
+        return "x = " + str(x)
+    elif y2 - y1 == 0:
+        y = y1
+        return "y = " + str(y)
+    else:
+        if type(x1) != int or type(y1) != int or type(x2) != int or type(y2) != int:
+            m = (((((y2-y1)/(x2-x1)) * 1000) // 1) / 1000)
+            return "y - " + str(y1) + " = " + str(m) + "(x - " + str(x1)
+        else:
+            mnumer = (y2-y1)
+            ndenom = (x2-x1)
+            if mnumer > ndenom:
+                for i in range(mdenom):
+                    if mnumer % i == 0 and mdenom % i == 0:
+                        mnumer = mnumer / i
+                        mdenom = mdenom / i
+            else:
+                for i in range(mnumer):
+                    if mnumer % i == 0 and mdenom % i == 0:
+                        mnumer = mnumer / i
+                        mdenom = mdenom / i
+                
+            return "y - " + str(y1) + " = " + str(mnumer) + "/" + str(ndenom) + "(x - " + str(x1)
+    
+       
         
         
 def main():

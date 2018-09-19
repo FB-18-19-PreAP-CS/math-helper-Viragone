@@ -237,7 +237,7 @@ def unitCircle(trigOp, numer, denom):
             answer = "decimal: " + str(answerDecimal)
             return answer
         
-def pointsToPointSLope(x1,y1,x2,y2):
+def pointsToPointSlope(x1,y1,x2,y2):
     ''' returns, given two points, the equation of the line
         in point-slope form, the preferred linear equation
         form on the AP Calculus AB exam
@@ -252,10 +252,11 @@ def pointsToPointSLope(x1,y1,x2,y2):
         'y - 3 = 1/7(x - 2)'
         
         >>> pointsToPointSlope(2,3.1,9,9.2)
-        'y - 3.1 = 0.871(x - 2)
+        'y - 3.1 = 0.871(x - 2)'
         
         >>> pointsToPointSlope(1,2,6,12)
-        '
+        'y - 2 = 2(x - 1)'
+        
     '''
     if x2 - x1 == 0:
         x = x2
@@ -266,22 +267,27 @@ def pointsToPointSLope(x1,y1,x2,y2):
     else:
         if type(x1) != int or type(y1) != int or type(x2) != int or type(y2) != int:
             m = (((((y2-y1)/(x2-x1)) * 1000) // 1) / 1000)
-            return "y - " + str(y1) + " = " + str(m) + "(x - " + str(x1)
+            return "y - " + str(y1) + " = " + str(m) + "(x - " + str(x1) + ")"
         else:
             mnumer = (y2-y1)
-            ndenom = (x2-x1)
-            if mnumer > ndenom:
-                for i in range(mdenom):
+            mdenom = (x2-x1)
+            if mnumer > mdenom:
+                for i in range(2, mdenom + 1):
                     if mnumer % i == 0 and mdenom % i == 0:
                         mnumer = mnumer / i
                         mdenom = mdenom / i
             else:
-                for i in range(mnumer):
+                for i in range(2, mnumer + 1):
                     if mnumer % i == 0 and mdenom % i == 0:
                         mnumer = mnumer / i
                         mdenom = mdenom / i
-                
-            return "y - " + str(y1) + " = " + str(mnumer) + "/" + str(ndenom) + "(x - " + str(x1)
+                        
+            if mdenom == 1:
+                finalM =  int (mnumer // mdenom) // 1
+                return "y - " + str(y1) + " = " + str(finalM) + "(x - " + str(x1) + ")"
+            
+            else:
+                return "y - " + str(y1) + " = " + str(mnumer) + "/" + str(mdenom) + "(x - " + str(x1) + ")"
     
        
         

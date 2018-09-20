@@ -294,13 +294,34 @@ def SAS(side1,side2,angle):
        triangle, given the lengths of two sides and the angle
        (in degrees) at the intersection of the two sides
        
-       >>> SAS(2,3,30)
+       >>> SAS(6,6,30)
+       '9'
+       
+       >>> SAS(5,12,90)
+       '30'
+       
+       >>> SAS(27,13,125)
+       '143.351'
+       
+       >>> SAS(68,41,78)
+       '1363.537'
+       
+       >>> SAS(8,15,90)
+       '60'
+       
+       
+    
+       
                
     '''
     
     angleRadians = math.radians(angle)
-    area = ((((side1 * side2) // 2 * math.sin(angleRadians) * 1000) // 1) / 1000)
-    return area
+    area = (((((side1 * side2) // 2 * math.sin(angleRadians) * 1000) // 1) / 1000))
+    if math.ceil(area) - area <= .1:
+        area = math.ceil(area)
+    return str(area)
+
+
 
 
 
@@ -312,7 +333,7 @@ def main():
     pass
     
 if __name__ == "__main__":
-    #main()
+    main()
     import doctest
     doctest.testmod()
             

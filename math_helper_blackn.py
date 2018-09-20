@@ -309,10 +309,6 @@ def SAS(side1,side2,angle):
        >>> SAS(8,15,90)
        '60'
        
-       
-    
-       
-               
     '''
     
     angleRadians = math.radians(angle)
@@ -320,6 +316,29 @@ def SAS(side1,side2,angle):
     if math.ceil(area) - area <= .1:
         area = math.ceil(area)
     return str(area)
+
+def quadraticFormula(a,b,c):
+    '''docstrings go here, I'll do them soon I promise
+
+    '''
+    
+    if (b**2 - 4 * a * c) < 0:
+        raise ValueError("Discriminant is negative- imaginary values not supported")
+    elif (a == 0):
+        raise ValueError("Not a quadratic equation")
+    value1 = (((((-b + math.sqrt(b**2 - 4 * a * c)) / 2*a) * 1000) // 1) / 1000)
+    if math.ceil(value1) - value1 <= .1:
+        value1 = math.ceil(value1)
+    value2 = (((((-b - math.sqrt(b**2 - 4 * a * c)) / 2*a) * 1000) // 1) / 1000)
+    if math.ceil(value2) - value2 <= .1:
+        value2 = math.ceil(value2)
+    
+    answer = "value 1: " + str(value1) + "     value 2: " + str(value2)
+    return answer
+
+
+    
+        
 
 
 

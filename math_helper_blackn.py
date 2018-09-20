@@ -44,15 +44,37 @@ class Fraction():
         return self.den
     
 class Radical():
-    def __init__(self, radicand):
+    def __init__(self, outsideRadical, radicand):
         self.radicand = radicand
+        self.factors = []
+        self.outsideFactor = outsideRadical
+        if self.outsideRadical == 1:
+            self.simplified = False
     def rad(self):
         return self.radicand
     def square(self):
         return self.radicand
     def __str__(self):
-        return "root(" + str(self.radicand) + ")"
-        
+        if self.simplified == False:
+            return "root(" + str(self.radicand) + ")"
+        else:
+            pass
+            
+def isPrime(x):
+    for i in range(2, x):
+        if x % i == 0:
+            return False
+    return True
+
+def simplifyToPrimes(x):
+    factorList = []
+    for i in range(2, x):
+        if x % i == 0:
+            factorList.append(i)
+            if isPrime(x):
+                factorList.append(x)
+    return factorList
+            
         
         
 
@@ -127,13 +149,13 @@ def unitCircle(trigOp, numer, denom):
                 answerRadical = answerRadical.flip()
                 answerDecimal = 2
         elif referenceAngle == 45:
-            answerRadical = Fraction(Radical(2), 2)
+            answerRadical = Fraction(Radical(1, 2), 2)
             answerDecimal = 0.707
             if trigOp == "cosecant" or trigOp == "csc":
                 answerRadical = answerRadical.flip()
                 answerDecimal = 1.414
         elif referenceAngle == 60:
-            answerRadical = Fraction(Radical(3), 2)
+            answerRadical = Fraction(Radical(1, 3), 2)
             answerDecimal = 0.866
             if trigOp == "cosecant" or trigOp == "csc":
                 answerRadical = answerRadical.flip()
@@ -157,13 +179,13 @@ def unitCircle(trigOp, numer, denom):
                 answerRadical = answerRadical.flip()
                 answerDecimal = 1
         elif referenceAngle == 30:
-            answerRadical = Fraction(Radical(3), 2) 
+            answerRadical = Fraction(Radical(1, 3), 2) 
             answerDecimal = 0.866
             if trigOp == "secant" or trigOp == "sec":
                 answerRadical = answerRadical.flip()
                 answerDecimal = 1.155
         elif referenceAngle == 45:
-            answerRadical = Fraction(Radical(2), 2)
+            answerRadical = Fraction(Radical(1, 2), 2)
             answerDecimal = 0.707
             if trigOp == "secant" or trigOp == "sec":
                 answerRadical = answerRadical.flip()
@@ -193,7 +215,7 @@ def unitCircle(trigOp, numer, denom):
                 answerRadical = answerRadical.flip()
                 answerDecimal = "undefined (-)"
         elif referenceAngle == 30:
-            answerRadical = Fraction(1, Radical(3)) 
+            answerRadical = Fraction(1, Radical(1, 3)) 
             answerDecimal = 0.577
             if trigOp == "cotangent" or trigOp == "cot":
                 answerRadical = answerRadical.flip()
@@ -205,7 +227,7 @@ def unitCircle(trigOp, numer, denom):
                 answerRadical = answerRadical.flip()
                 answerDecimal = 1
         elif referenceAngle == 60:
-            answerRadical = Fraction(Radical(3), 1)
+            answerRadical = Fraction(Radical(1, 3), 1)
             answerDecimal = 1.732
             if trigOp == "cotangent" or trigOp == "cot":
                 answerRadical = answerRadical.flip()
@@ -317,6 +339,29 @@ def SAS(side1,side2,angle):
         area = math.ceil(area)
     return str(area)
 
+
+
+def simplifyRadical(x):
+    '''docstrings go here, I'll do them soon I promise
+    '''
+    radic = Radical(x)
+    for i in range(2, ((radic.radicand // 2)+1)):
+        if radic.radicand % i == 0:
+            if isPrime(i):
+                radic.factors.append(i)
+            else:
+                for factor in simplifyToPrimes(i):
+                    radic.factors.append(factor)
+            radic.radicand = radic.radicand / i
+            if isPrime(radic.radicand):
+                radic.factors.append(radic.radicand)
+                break
+    
+    
+            
+    
+            
+            
 def quadraticFormula(a,b,c):
     '''returns (to the thousandths place) the two roots (zeroes)
        of a given quadratic equation ax^2 + bx + c with inputs
@@ -327,6 +372,7 @@ def quadraticFormula(a,b,c):
        
        >>> quadraticFormula(1,-3,2)
        'value 1: 2     value 2: 1'
+       
 
     '''
     
@@ -343,6 +389,7 @@ def quadraticFormula(a,b,c):
     
     answer = "value 1: " + str(value1) + "     value 2: " + str(value2)
     return answer
+
 
 
 

@@ -318,7 +318,15 @@ def SAS(side1,side2,angle):
     return str(area)
 
 def quadraticFormula(a,b,c):
-    '''docstrings go here, I'll do them soon I promise
+    '''returns (to the thousandths place) the two roots (zeroes)
+       of a given quadratic equation ax^2 + bx + c with inputs
+       a, b, and c
+       
+       >>> quadraticFormula(1,5,6)
+       'value 1: -2     value 2: -3'
+       
+       >>> quadraticFormula(1,-3,2)
+       'value 1: 2     value 2: 1'
 
     '''
     
@@ -335,6 +343,8 @@ def quadraticFormula(a,b,c):
     
     answer = "value 1: " + str(value1) + "     value 2: " + str(value2)
     return answer
+
+
 
 
     

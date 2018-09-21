@@ -448,15 +448,15 @@ def quadraticFormula(a,b,c):
        
 
     '''
-    
-    if (b**2 - 4 * a * c) < 0:
-        raise ValueError("Discriminant is negative- imaginary values not supported")
-    elif (a == 0):
-        raise ValueError("Not a quadratic equation")
+    a = float(a)
+    b = float(b)
+    c = float(c)
     radicalMode = False
-    if (b**2 - 4 * a * c) % 1 == 0:
+    part1 = b * b
+    part2 = 4 * a * c
+    if float(part1 - part2) % 1 == 0:
         radicalMode = True
-        discriminant = b**2 - 4 * a * c
+        discriminant = math.floor(b**2 - 4 * a * c)
         radicalString = simplifyRadical(discriminant)
     value1 = (((((-b + math.sqrt(b**2 - 4 * a * c)) / 2*a) * 1000) // 1) / 1000)
     if math.ceil(value1) - value1 <= .1:
@@ -534,6 +534,52 @@ def getunitCircleValues():
                             numerator = int(numerator)
                             denominator = int(denominator)
                             return unitCircle(operator, numerator, denominator)
+                        
+def getQuadraticFormulaValues():
+    useFunctiona = False
+    useFunctionb = False
+    useFunctionc = False
+    while useFunctiona == False:
+        a = input("Enter value a: ")
+        if a == "s":
+            return False
+        try:
+            a = float(a)
+        except ValueError:
+            print("Not an integer.")
+            return True
+        if a == 0:
+            print("Invalid input.")
+            return True
+        else:
+            useFunctiona = True
+            while useFunctionb == False:
+                b = input("Enter value b: ")
+                if b == "s":
+                    return False
+                try:
+                    b = float(b)
+                except ValueError:
+                    print("Not an integer.")
+                    return True
+                else:
+                    useFunctionb = True
+                    while useFunctionc == False:
+                        c = input("Enter value c: ")
+                        if c == "s":
+                            return False
+                        try:
+                            b = float(b)
+                        except ValueError:
+                            print("Not an integer.")
+                            return True
+
+                        else:
+                            useFunctionc = True
+                            return quadraticFormula(a,b,c)
+                        
+def getSASValues():
+    
                         
 def getSimplifyRadicalValues():
     useFunction = False

@@ -111,7 +111,8 @@ def unitCircle(trigOp, numer, denom):
        'decimal: 0.342'
        
     '''
-    
+    numer = int(numer)
+    denom = int(denom)
     referenceAngles = [0, 30, 45, 60, 90]
     trigOperations = ["sine", "sin", "cosine", "cos", "tangent", "tan", "cosecant", "csc", "secant", "sec", "cotangent", "cot"]
     degAngle = ((numer//1) * 180) // (denom//1)
@@ -484,23 +485,63 @@ def quadraticFormula(a,b,c):
         return "value 1: " + str(value1) + " or " + answer1 +"     value 2: " + str(value2) + " or " + answer2
         
         
+def getunitCircleValues():
+    trig = ["sine", "sin", "cosine", "cos", "tangent", "tan", "cosecant", "csc", "secant", "sec", "cotangent", "cot"]
+    useFunction = False
+    useFunctionn = False
+    useFunctiond = False
+    while useFunctionn == False:
+        print("Enter value n, as it appears on n * pi")
+        print("                                ------")
+        n = input("                                   d   ")
+        if n == "s":
+            return False
+        try:
+            numerator = int(n)
+        except ValueError:
+            print("Not an integer.")
+            return True
+        if numerator < 1 or numerator > 5:
+            print("Invalid input.")
+            return True
+        else:
+            useFunctionn = True
+            while useFunctiond == False:
+                print("Enter value d, as it appears on n * pi")
+                print("                                ------")
+                d = input("                                   d   ")
+                if d == "s":
+                    return False
+                try:
+                    denominator = int(d)
+                except ValueError:
+                    print("Not an integer.")
+                    return True
+                if (numerator * 180 / denominator) < 0 or (numerator * 180 / denominator) > 360:
+                    print("Invalid input. Not on Unit Circle")
+                    return True
+                else:
+                    useFunctiond = True
+                    while useFunction == False:
+                        operator = str(input("Enter the trig function you'd like to use: "))
+                        if operator == "s":
+                            return False
+                        if operator not in trig:
+                            print("Invalid input. Not a valid trig function.")
+                            return True
+                        else:
+                            useFunction = True
+                            numerator = int(numerator)
+                            denominator = int(denominator)
+                            return unitCircle(operator, numerator, denominator) 
+                
 
 
 
-
-
-    
-        
-
-
-
-
-
-    
-       
         
         
 def main():
+    pass
     functional = True
     print("Hello, welcome to the Math Helper!")
     sleep(1)
@@ -513,21 +554,21 @@ def main():
     print("5. Solve For Area of a Triangle Given A Side, Angle, and Side")
     sleep(.5)
     while functional:
-        functionSelect = input("Which will you choose? ")
+        functionSelect = input("Which will you choose? (Press s at any time to quit)")
         if type(functionSelect) != str:
             print("Goodbye!")
             functional = False
         else:
             while int(functionSelect) > 5 and int(functionSelect) < 1:
                 sleep(.5)
-                functionSelect = int(input("Invalid Input. Which will you choose? (Press any non-integer to exit) "))
+                functionSelect = int(input("Invalid Input. Which will you choose? (Press s at any time to quit) "))
     
 
     
 if __name__ == "__main__":
     main()
-    import doctest
-    doctest.testmod()
+    #import doctest
+    #doctest.testmod()
             
             
         

@@ -495,15 +495,15 @@ def getunitCircleValues():
         print("                                ------")
         n = input("                                   d   ")
         if n == "s":
-            return False
+            return "False"
         try:
             numerator = int(n)
         except ValueError:
             print("Not an integer.")
-            return True
+            return "True"
         if numerator < 1 or numerator > 5:
             print("Invalid input.")
-            return True
+            return "True"
         else:
             useFunctionn = True
             while useFunctiond == False:
@@ -511,24 +511,24 @@ def getunitCircleValues():
                 print("                                ------")
                 d = input("                                   d   ")
                 if d == "s":
-                    return False
+                    return "False"
                 try:
                     denominator = int(d)
                 except ValueError:
                     print("Not an integer.")
-                    return True
+                    return "True"
                 if (numerator * 180 / denominator) < 0 or (numerator * 180 / denominator) > 360:
                     print("Invalid input. Not on Unit Circle")
-                    return True
+                    return "True"
                 else:
                     useFunctiond = True
                     while useFunction == False:
                         operator = str(input("Enter the trig function you'd like to use: "))
                         if operator == "s":
-                            return False
+                            return "False"
                         if operator not in trig:
                             print("Invalid input. Not a valid trig function.")
-                            return True
+                            return "True"
                         else:
                             useFunction = True
                             numerator = int(numerator)
@@ -542,37 +542,37 @@ def getQuadraticFormulaValues():
     while useFunctiona == False:
         a = input("Enter value a: ")
         if a == "s":
-            return False
+            return "False"
         try:
             a = float(a)
         except ValueError:
             print("Not a valid number.")
-            return True
+            return "True"
         if a == 0:
             print("Invalid input.")
-            return True
+            return "True"
         else:
             useFunctiona = True
             while useFunctionb == False:
                 b = input("Enter value b: ")
                 if b == "s":
-                    return False
+                    return "False"
                 try:
                     b = float(b)
                 except ValueError:
                     print("Not a valid number.")
-                    return True
+                    return "True"
                 else:
                     useFunctionb = True
                     while useFunctionc == False:
                         c = input("Enter value c: ")
                         if c == "s":
-                            return False
+                            return "False"
                         try:
                             b = float(b)
                         except ValueError:
                             print("Not a valid number.")
-                            return True
+                            return "True"
 
                         else:
                             useFunctionc = True
@@ -585,43 +585,43 @@ def getSASValues():
     while useFunctiona == False:
         a = input("Enter side a: ")
         if a == "s":
-            return False
+            return "False"
         try:
             a = float(a)
         except ValueError:
             print("Not a valid number.")
-            return True
+            return "True"
         if a <= 0:
             print("Invalid input.")
-            return True
+            return "True"
         else:
             useFunctiona = True
             while useFunctionb == False:
                 b = input("Enter side b: ")
                 if b == "s":
-                    return False
+                    return "False"
                 try:
                     b = float(b)
                 except ValueError:
                     print("Not a valid number.")
-                    return True
+                    return "True"
                 if b <= 0:
                     print("Invalid input.")
-                    return True
+                    return "True"
                 else:
                     useFunctionb = True
                     while useFunctionc == False:
                         c = input("Enter angle c: ")
                         if c == "s":
-                            return False
+                            return "False"
                         try:
                             c = float(c)
                         except ValueError:
                             print("Not a valid number.")
-                            return True
+                            return "True"
                         if c <= 0 or c >= 360:
                             print("Invalid angle.")
-                            return True
+                            return "True"
                         else:
                             useFunctionc = True
                             return SAS(a,b,c)
@@ -632,12 +632,12 @@ def getSimplifyRadicalValues():
     while useFunction == False:
         radical = input("Enter a radical to be simplified: ")
         if radical == "s":
-            return False
+            return "False"
         try:
             radical = int(radical)
         except ValueError:
             print("Not an integer.")
-            return True
+            return "True"
         radical = int(radical)
         useFunction = True
         return simplifyRadical(radical)
@@ -651,61 +651,54 @@ def getPointsToPointSlopeValues():
     while useFunctionx1 == False:
         x1 = input("Enter x1: ")
         if x1 == "s":
-            return False
+            return "False"
         try:
             x1 = float(x1)
         except ValueError:
             print("Not a valid number.")
-            return True
+            return "True"
         else:
             useFunctionx1 = True
             while useFunctiony1 == False:
                 y1 = input("Enter y1: ")
                 if y1 == "s":
-                    return False
+                    return "False"
                 try:
                     y1 = float(y1)
                 except ValueError:
                     print("Not a valid number.")
-                    return True
+                    return "True"
                 else:
                     useFunctiony1 = True
                     while useFunctionx2 == False:
                         x2 = input("Enter x2: ")
                         if x2 == "s":
-                            return False
+                            return "False"
                         try:
                             x2 = float(x2)
                         except ValueError:
                             print("Not a valid number.")
-                            return True
+                            return "True"
                         else:
                             useFunctionx2 = True
                             while useFunctiony2 == False:
                                 y2 = input("Enter y2: ")
                                 if y2 == "s":
-                                    return False
+                                    return "False"
                                 try:
                                     y2 = float(y2)
                                 except ValueError:
                                     print("Not a valid number.")
-                                    return True
+                                    return "True"
                                 else:
                                     useFunctiony2 = True
                                     if x1 == x2 and y1 == y2:
                                         print("Cannot give the same point twice.")
-                                        return True
+                                        return "True"
                                     return pointsToPointSlope(x1,y1,x2,y2)
-                            
-    
-                
-
-
-
         
         
 def main():
-    pass
     functional = True
     print("Hello, welcome to the Math Helper!")
     sleep(1)

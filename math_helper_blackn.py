@@ -710,15 +710,67 @@ def main():
     print("4. Solve For Roots of a Quadratic Funtion")
     print("5. Solve For Area of a Triangle Given A Side, Angle, and Side")
     sleep(.5)
+    autoRepeat = False
     while functional:
-        functionSelect = input("Which will you choose? (Press s at any time to quit)")
-        if type(functionSelect) != str:
-            print("Goodbye!")
+        functionSelect = input("Which will you choose? (Press s at any time to quit) ")
+        if functionSelect == "s":
             functional = False
-        else:
-            while int(functionSelect) > 5 and int(functionSelect) < 1:
-                sleep(.5)
-                functionSelect = int(input("Invalid Input. Which will you choose? (Press s at any time to quit) "))
+        try:
+            (functionSelect == int(functionSelect)) and (int(functionSelect) < 1 or int(functionSelect) > 5)
+        except ValueError:
+            print("Not a valid function.")
+            autoRepeat = True
+        if autoRepeat == False:
+            functionSelect = int(functionSelect)
+            if functionSelect == 1:
+                if getunitCircleValues() == "False":
+                    functional = False
+                elif getunitCircleValues() == "True":
+                    print("")
+                else:
+                    print(getunitCircleValues())
+            elif functionSelect == 2:
+                if getPointstoPointSLopeValues() == "False":
+                    functional = False
+                elif getPointstoPointSLopeValues() == "True":
+                    print("")
+                else:
+                    print(getPointstoPointSLopeValues())
+            elif functionSelect == 3:
+                if getSimplifyRadicalValues() == "False":
+                    functional = False
+                elif getSimplifyRadicalValues() == "True":
+                    print("")
+                else:
+                    print(getSimplifyRadicalValues())
+            elif functionSelect == 4:
+                if getQuadraticFormulaValues() == "False":
+                    functional = False
+                elif getQuadraticFormulaValues() == "True":
+                    print("")
+                else:
+                    print(getQuadraticFormulaValues())
+            elif functionSelect == 5:
+                if getSASValues() == "False":
+                    functional = False
+                elif getSASValues() == "True":
+                    print("")
+                else:
+                    print(getSASValues())
+            sleep(.5)
+            print("")
+            repeat = input("Would you like to use another formula? (Yes/No) ")
+            if repeat.lower() == "yes" or repeat.lower() == "y":
+                functional = True
+            else:
+                functional = False
+            
+                
+                        
+                        
+            
+            
+            
     
 
     

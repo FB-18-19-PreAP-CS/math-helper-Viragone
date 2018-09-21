@@ -546,7 +546,7 @@ def getQuadraticFormulaValues():
         try:
             a = float(a)
         except ValueError:
-            print("Not an integer.")
+            print("Not a valid number.")
             return True
         if a == 0:
             print("Invalid input.")
@@ -560,7 +560,7 @@ def getQuadraticFormulaValues():
                 try:
                     b = float(b)
                 except ValueError:
-                    print("Not an integer.")
+                    print("Not a valid number.")
                     return True
                 else:
                     useFunctionb = True
@@ -571,7 +571,7 @@ def getQuadraticFormulaValues():
                         try:
                             b = float(b)
                         except ValueError:
-                            print("Not an integer.")
+                            print("Not a valid number.")
                             return True
 
                         else:
@@ -579,6 +579,52 @@ def getQuadraticFormulaValues():
                             return quadraticFormula(a,b,c)
                         
 def getSASValues():
+    useFunctiona = False
+    useFunctionb = False
+    useFunctionc = False
+    while useFunctiona == False:
+        a = input("Enter side a: ")
+        if a == "s":
+            return False
+        try:
+            a = float(a)
+        except ValueError:
+            print("Not a valid number.")
+            return True
+        if a <= 0:
+            print("Invalid input.")
+            return True
+        else:
+            useFunctiona = True
+            while useFunctionb == False:
+                b = input("Enter side b: ")
+                if b == "s":
+                    return False
+                try:
+                    b = float(b)
+                except ValueError:
+                    print("Not a valid number.")
+                    return True
+                if b <= 0:
+                    print("Invalid input.")
+                    return True
+                else:
+                    useFunctionb = True
+                    while useFunctionc == False:
+                        c = input("Enter angle c: ")
+                        if c == "s":
+                            return False
+                        try:
+                            c = float(c)
+                        except ValueError:
+                            print("Not an integer.")
+                            return True
+                        if c <= 0 or c >= 360:
+                            print("Invalid angle.")
+                            return True
+                        else:
+                            useFunctionc = True
+                            return SAS(a,b,c)
     
                         
 def getSimplifyRadicalValues():

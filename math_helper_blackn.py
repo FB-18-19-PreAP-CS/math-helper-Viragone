@@ -26,7 +26,7 @@ class Fraction():
                 self.num = self.num1 +  "root(" + str(self.den1.rad()) + ")"
                 self.den = self.den1.square()
                 if str(self.num1) == str(self.den1.square()):
-                    return Fraction(Radical(str(self.num1)), "1")
+                    return Fraction(Radical(1, str(self.num1)), "1")
                 return Fraction(self.num, self.den)
         return Fraction(self.num1, self.den1)
     def __str__(self):
@@ -345,8 +345,27 @@ def SAS(side1,side2,angle):
 
 
 def simplifyRadical(x):
-    '''docstrings go here, I'll do them soon I promise
+    '''returns (in simplest radical form) the simplified
+       form of sqrt(x)
+       
+       >>> simplifyRadical(16)
+       '4'
+       
+       >>> simplifyRadical(361)
+       '19'
+       
+       >>> simplifyRadical(14)
+       'root(14)'
+       
+       >>> simplifyRadical(48)
+       '4root(3)'
+       
+       >>> simplifyRadical(104)
+       '2root(26)'
+       
     '''
+    if math.sqrt(x) % 1 == 0:
+        return str(math.floor(math.sqrt(x)))  
     outsideRadical = 1
     insideRadical = 1
     radic = Radical(1, x)
@@ -371,12 +390,15 @@ def simplifyRadical(x):
         if i == previousNumber:
             factorCount += 1
         else:
-            if factorCount == 1:
-                insideRadical *= (previousNumber * (1))
+            if factorCount % 2 == 1:
+                if factorCount == 1:
+                    insideRadical *= previousNumber
+                else:
+                    outsideRadical *= (previousNumber * (factorCount // 2))
+                    insideRadical *= previousNumber
+                    
             else:
                 outsideRadical *= (previousNumber * (factorCount // 2))
-            if factorCount % 2 == 1:
-                insideRadical *= previousNumber
             previousNumber = i
             factorCountList.append(factorCount)
             previousNumberList.append(previousNumber)
@@ -390,7 +412,7 @@ def simplifyRadical(x):
             outsideRadical *= (previousNumberList[len(previousNumberList) -1] * (factorCountList[len(factorCountList) -1] // 2))
     else:
         outsideRadical *= (previousNumberList[len(previousNumberList) -1] * (factorCountList[len(factorCountList) -1] // 2))
-    return Radical(outsideRadical, insideRadical)
+    return str(Radical(outsideRadical, insideRadical))
                 
             
         
@@ -448,9 +470,9 @@ def main():
 
     
 if __name__ == "__main__":
-    main()
-    #import doctest
-    #doctest.testmod()
+    #main()
+    import doctest
+    doctest.testmod()
             
             
         

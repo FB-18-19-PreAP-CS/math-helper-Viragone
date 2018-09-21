@@ -533,7 +533,23 @@ def getunitCircleValues():
                             useFunction = True
                             numerator = int(numerator)
                             denominator = int(denominator)
-                            return unitCircle(operator, numerator, denominator) 
+                            return unitCircle(operator, numerator, denominator)
+                        
+def getSimplifyRadicalValues():
+    useFunction = False
+    while useFunction == False:
+        radical = input("Enter a radical to be simplified: ")
+        if radical == "s":
+            return False
+        try:
+            radical = int(radical)
+        except ValueError:
+            print("Not an integer.")
+            return True
+        radical = int(radical)
+        useFunction = True
+        return simplifyRadical(radical)
+    
                 
 
 

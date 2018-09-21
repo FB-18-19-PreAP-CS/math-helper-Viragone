@@ -1,4 +1,5 @@
 import math
+from time import *
  
 
 
@@ -500,11 +501,31 @@ def quadraticFormula(a,b,c):
         
         
 def main():
-    print(quadraticFormula(1.1,7.1,6.1))
+    functional = True
+    print("Hello, welcome to the Math Helper!")
+    sleep(1)
+    print("These are the mathematcal helpers supported by this program: ")
+    sleep(.5)
+    print("1. Unit Circle")
+    print("2. Points to Point-Slope Form")
+    print("3. Simplify A Radical")
+    print("4. Solve For Roots of a Quadratic Funtion")
+    print("5. Solve For Area of a Triangle Given A Side, Angle, and Side")
+    sleep(.5)
+    while functional:
+        functionSelect = input("Which will you choose? ")
+        if type(functionSelect) != str:
+            print("Goodbye!")
+            functional = False
+        else:
+            while int(functionSelect) > 5 and int(functionSelect) < 1:
+                sleep(.5)
+                functionSelect = int(input("Invalid Input. Which will you choose? (Press any non-integer to exit) "))
+    
 
     
 if __name__ == "__main__":
-    #main()
+    main()
     import doctest
     doctest.testmod()
             

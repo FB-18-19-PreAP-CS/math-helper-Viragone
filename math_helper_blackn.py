@@ -617,7 +617,7 @@ def getSASValues():
                         try:
                             c = float(c)
                         except ValueError:
-                            print("Not an integer.")
+                            print("Not a valid number.")
                             return True
                         if c <= 0 or c >= 360:
                             print("Invalid angle.")
@@ -641,6 +641,62 @@ def getSimplifyRadicalValues():
         radical = int(radical)
         useFunction = True
         return simplifyRadical(radical)
+    
+    
+def getPointsToPointSlopeValues():
+    useFunctionx1 = False
+    useFunctiony1 = False
+    useFunctionx2 = False
+    useFunctiony2 = False
+    while useFunctionx1 == False:
+        x1 = input("Enter x1: ")
+        if x1 == "s":
+            return False
+        try:
+            x1 = float(x1)
+        except ValueError:
+            print("Not a valid number.")
+            return True
+        else:
+            useFunctionx1 = True
+            while useFunctiony1 == False:
+                y1 = input("Enter y1: ")
+                if y1 == "s":
+                    return False
+                try:
+                    y1 = float(y1)
+                except ValueError:
+                    print("Not a valid number.")
+                    return True
+                else:
+                    useFunctiony1 = True
+                    while useFunctionx2 == False:
+                        x2 = input("Enter x2: ")
+                        if x2 == "s":
+                            return False
+                        try:
+                            x2 = float(x2)
+                        except ValueError:
+                            print("Not a valid number.")
+                            return True
+                        else:
+                            useFunctionx2 = True
+                            while useFunctiony2 == False:
+                                y2 = input("Enter y2: ")
+                                if y2 == "s":
+                                    return False
+                                try:
+                                    y2 = float(y2)
+                                except ValueError:
+                                    print("Not a valid number.")
+                                    return True
+                                else:
+                                    useFunctiony2 = True
+                                    if x1 == x2 and y1 == y2:
+                                        print("Cannot give the same point twice.")
+                                        return True
+                                    return pointsToPointSlope(x1,y1,x2,y2)
+                            
     
                 
 

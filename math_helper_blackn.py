@@ -48,8 +48,10 @@ class Radical():
         self.radicand = radicand
         self.factors = []
         self.outsideFactor = outsideRadical
-        if self.outsideRadical == 1:
+        if self.outsideFactor == 1:
             self.simplified = False
+        else:
+            self.simplified = True
     def rad(self):
         return self.radicand
     def square(self):
@@ -58,7 +60,7 @@ class Radical():
         if self.simplified == False:
             return "root(" + str(self.radicand) + ")"
         else:
-            pass
+            return str(self.outsideFactor) + "root(" + str(self.radicand) + ")"
             
 def isPrime(x):
     for i in range(2, x):
@@ -71,6 +73,7 @@ def simplifyToPrimes(x):
     for i in range(2, x):
         if x % i == 0:
             factorList.append(i)
+            x = math.floor(x / i)
             if isPrime(x):
                 factorList.append(x)
     return factorList
@@ -344,18 +347,53 @@ def SAS(side1,side2,angle):
 def simplifyRadical(x):
     '''docstrings go here, I'll do them soon I promise
     '''
-    radic = Radical(x)
-    for i in range(2, ((radic.radicand // 2)+1)):
-        if radic.radicand % i == 0:
-            if isPrime(i):
-                radic.factors.append(i)
+    outsideRadical = 1
+    insideRadical = 1
+    radic = Radical(1, x)
+    for i in range(3):
+        for i in range(2, ((radic.radicand // 2)+1)):
+            if radic.radicand % i == 0:
+                if isPrime(i):
+                    radic.factors.append(i)
+                else:
+                    for factor in simplifyToPrimes(i):
+                        radic.factors.append(factor)
+                radic.radicand = math.floor(radic.radicand / i)
+                if isPrime(radic.radicand):
+                    radic.factors.append(radic.radicand)
+                    break
+    radic.factors.sort() #sort function found on Stack Overflow at https://stackoverflow.com/questions/3426108/how-to-sort-a-list-numerically
+    previousNumber = radic.factors[0]
+    factorCount = 0
+    factorCountList = []
+    previousNumberList = []
+    for i in radic.factors:
+        if i == previousNumber:
+            factorCount += 1
+        else:
+            if factorCount == 1:
+                insideRadical *= (previousNumber * (1))
             else:
-                for factor in simplifyToPrimes(i):
-                    radic.factors.append(factor)
-            radic.radicand = radic.radicand / i
-            if isPrime(radic.radicand):
-                radic.factors.append(radic.radicand)
-                break
+                outsideRadical *= (previousNumber * (factorCount // 2))
+            if factorCount % 2 == 1:
+                insideRadical *= previousNumber
+            previousNumber = i
+            factorCountList.append(factorCount)
+            previousNumberList.append(previousNumber)
+            factorCount = 1
+    factorCountList.append(factorCount)
+    if factorCountList[len(factorCountList) -1] % 2 == 1:
+        if factorCountList[len(factorCountList) -1] == 1:
+            insideRadical *= previousNumberList[len(previousNumberList) -1]
+        else:
+            insideRadical *= previousNumberList[len(previousNumberList) -1]
+            outsideRadical *= (previousNumberList[len(previousNumberList) -1] * (factorCountList[len(factorCountList) -1] // 2))
+    else:
+        outsideRadical *= (previousNumberList[len(previousNumberList) -1] * (factorCountList[len(factorCountList) -1] // 2))
+    return Radical(outsideRadical, insideRadical)
+                
+            
+        
     
     
             
@@ -406,12 +444,13 @@ def quadraticFormula(a,b,c):
         
         
 def main():
-    pass
+    print(simplifyRadical(104))
+
     
 if __name__ == "__main__":
     main()
-    import doctest
-    doctest.testmod()
+    #import doctest
+    #doctest.testmod()
             
             
         

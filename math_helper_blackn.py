@@ -365,7 +365,9 @@ def simplifyRadical(x):
        
     '''
     if math.sqrt(x) % 1 == 0:
-        return str(math.floor(math.sqrt(x)))  
+        return str(math.floor(math.sqrt(x)))
+    if isPrime(x):
+        return Radical(1,x)
     outsideRadical = 1
     insideRadical = 1
     radic = Radical(1, x)
@@ -428,10 +430,19 @@ def quadraticFormula(a,b,c):
        a, b, and c
        
        >>> quadraticFormula(1,5,6)
-       'value 1: -2     value 2: -3'
+       'value 1: -2 or -2.0     value 2: -3 or -3.0'
        
        >>> quadraticFormula(1,-3,2)
-       'value 1: 2     value 2: 1'
+       'value 1: 2 or 2.0     value 2: 1 or 1.0'
+       
+       >>> quadraticFormula(1,7,2)
+       'value 1: -0.299 or (-7 + root(41)) / 2     value 2: -6.702 or (-7 - root(41)) / 2'
+       
+       >>> quadraticFormula(1,9,3)
+       'value 1: -0.347 or (-9 + root(69)) / 2     value 2: -8.654 or (-9 - root(69)) / 2'
+       
+       >>> quadraticFormula(1.1,7.1,6.1)
+       'value 1: -1.235     value 2: -6.576'
        
 
     '''
@@ -440,6 +451,11 @@ def quadraticFormula(a,b,c):
         raise ValueError("Discriminant is negative- imaginary values not supported")
     elif (a == 0):
         raise ValueError("Not a quadratic equation")
+    radicalMode = False
+    if (b**2 - 4 * a * c) % 1 == 0:
+        radicalMode = True
+        discriminant = b**2 - 4 * a * c
+        radicalString = simplifyRadical(discriminant)
     value1 = (((((-b + math.sqrt(b**2 - 4 * a * c)) / 2*a) * 1000) // 1) / 1000)
     if math.ceil(value1) - value1 <= .1:
         value1 = math.ceil(value1)
@@ -447,8 +463,26 @@ def quadraticFormula(a,b,c):
     if math.ceil(value2) - value2 <= .1:
         value2 = math.ceil(value2)
     
-    answer = "value 1: " + str(value1) + "     value 2: " + str(value2)
-    return answer
+    if radicalMode == False:
+        answer = "value 1: " + str(value1) + "     value 2: " + str(value2)
+        return answer
+    else:
+        
+        if type(radicalString) != Radical:
+            if len(radicalString) <= 4:
+                if float(str(radicalString)) % 1 == 0:
+                    radicalString = math.floor(float(radicalString))
+                    answer1 = str((-b + radicalString) / (2 * a))
+                    answer2 = str((-b - radicalString) / (2 * a))
+                    return "value 1: " + str(value1) + " or " + answer1 +"     value 2: " + str(value2) + " or " + answer2
+            
+            
+            
+        answer1 = "(" + str(-b) + " + " + str(radicalString)  + ") / " + str(2 * a)
+        answer2 = "(" + str(-b) + " - " + str(radicalString)  + ") / " + str(2 * a)
+        return "value 1: " + str(value1) + " or " + answer1 +"     value 2: " + str(value2) + " or " + answer2
+        
+        
 
 
 
@@ -466,7 +500,7 @@ def quadraticFormula(a,b,c):
         
         
 def main():
-    print(simplifyRadical(104))
+    print(quadraticFormula(1.1,7.1,6.1))
 
     
 if __name__ == "__main__":

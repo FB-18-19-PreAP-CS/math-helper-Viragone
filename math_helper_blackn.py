@@ -12,7 +12,7 @@ class Fraction():
             if self.num == 1:
                 self.num = Radical(self.den.rad())
             else:  
-                self.num = self.num + "root(" + str(self.den.rad()) + ")"
+                self.num = self.num + u"\u221A" + str(self.den.rad())
             self.den = self.den.square()
     def flip(self):
         helper = self.num
@@ -20,11 +20,11 @@ class Fraction():
         self.den1 = helper
         if type(self.den1) == Radical:
             if self.num1 == "1":
-                self.num = "root(" + str(self.den1.rad()) +")"
+                self.num = u"\u221A"+ str(self.den1.rad())
                 self.den = self.den1.square()
                 return Fraction(self.num, self.den)
             else:  
-                self.num = self.num1 +  "root(" + str(self.den1.rad()) + ")"
+                self.num = self.num1 +  u"\u221A" + str(self.den1.rad())
                 self.den = self.den1.square()
                 if str(self.num1) == str(self.den1.square()):
                     return Fraction(Radical(1, str(self.num1)), "1")
@@ -59,9 +59,9 @@ class Radical():
         return self.radicand
     def __str__(self):
         if self.simplified == False:
-            return "root(" + str(self.radicand) + ")"
+            return u"\u221A" + str(self.radicand) #square root character code found at https://www.fileformat.info/info/unicode/char/221a/index.htm 
         else:
-            return str(self.outsideFactor) + "root(" + str(self.radicand) + ")"
+            return str(self.outsideFactor) + u"\u221A" + str(self.radicand)
             
 def isPrime(x):
     for i in range(2, x):
@@ -96,16 +96,16 @@ def unitCircle(trigOp, numer, denom):
              
        
        >>> unitCircle("cos", 5,6)
-       'decimal: -0.866     radical: -root(3)/2'
+       'decimal: -0.866     radical: -\u221A3/2'
        
        >>> unitCircle("sec", 5, 6)
-       'decimal: -1.155     radical: -2root(3)/3'
+       'decimal: -1.155     radical: -2\u221A3/3'
        
        >>> unitCircle("csc",2,1)
        'decimal: undefined (-)     radical: undefined (-)'
        
        >>> unitCircle("csc",1,4)
-       'decimal: 1.414     radical: root(2)'
+       'decimal: 1.414     radical: \u221A2'
        
        >>> unitCircle("sin",1,9)
        'decimal: 0.342'
@@ -357,13 +357,13 @@ def simplifyRadical(x):
        '19'
        
        >>> simplifyRadical(14)
-       'root(14)'
+       '\u221A14'
        
        >>> simplifyRadical(48)
-       '4root(3)'
+       '4\u221A3'
        
        >>> simplifyRadical(104)
-       '2root(26)'
+       '2\u221A26'
        
     '''
     if math.sqrt(x) % 1 == 0:
@@ -438,10 +438,10 @@ def quadraticFormula(a,b,c):
        'value 1: 2 or 2.0     value 2: 1 or 1.0'
        
        >>> quadraticFormula(1,7,2)
-       'value 1: -0.299 or (-7 + root(41)) / 2     value 2: -6.702 or (-7 - root(41)) / 2'
+       'value 1: -0.299 or (-7.0 + \u221A41) / 2.0     value 2: -6.702 or (-7.0 - \u221A41) / 2.0'
        
        >>> quadraticFormula(1,9,3)
-       'value 1: -0.347 or (-9 + root(69)) / 2     value 2: -8.654 or (-9 - root(69)) / 2'
+       'value 1: -0.347 or (-9.0 + \u221A69) / 2.0     value 2: -8.654 or (-9.0 - \u221A69) / 2.0'
        
        >>> quadraticFormula(1.1,7.1,6.1)
        'value 1: -1.235     value 2: -6.576'
@@ -471,7 +471,7 @@ def quadraticFormula(a,b,c):
     else:
         
         if type(radicalString) != Radical:
-            if len(radicalString) <= 4:
+            if str(u"\u221A") not in radicalString:
                 if float(str(radicalString)) % 1 == 0:
                     radicalString = math.floor(float(radicalString))
                     answer1 = str((-b + radicalString) / (2 * a))
@@ -500,9 +500,6 @@ def getunitCircleValues():
             numerator = int(n)
         except ValueError:
             print("Not an integer.")
-            return "True"
-        if numerator < 1 or numerator > 5:
-            print("Invalid input.")
             return "True"
         else:
             useFunctionn = True
@@ -702,67 +699,89 @@ def main():
     functional = True
     print("Hello, welcome to the Math Helper!")
     sleep(1)
-    print("These are the mathematcal helpers supported by this program: ")
-    sleep(.5)
-    print("1. Unit Circle")
-    print("2. Points to Point-Slope Form")
-    print("3. Simplify A Radical")
-    print("4. Solve For Roots of a Quadratic Funtion")
-    print("5. Solve For Area of a Triangle Given A Side, Angle, and Side")
-    sleep(.5)
     autoRepeat = False
     while functional:
+        print("These are the mathematcal helpers supported by this program: ")
+        sleep(.5)
+        print("")
+        print("1. Unit Circle")
+        sleep(.25)
+        print("2. Points to Point-Slope Form")
+        sleep(.25)
+        print("3. Simplify A Radical")
+        sleep(.25)
+        print("4. Solve For Roots of a Quadratic Funtion")
+        sleep(.25)
+        print("5. Solve For Area of a Triangle Given A Side, Angle, and Side")
+        sleep(1)
+        print("")
         functionSelect = input("Which will you choose? (Press s at any time to quit) ")
         if functionSelect == "s":
             functional = False
         try:
-            (functionSelect == int(functionSelect)) and (int(functionSelect) < 1 or int(functionSelect) > 5)
+            ((functionSelect == int(functionSelect)) and (int(functionSelect) < 1 or int(functionSelect) > 5))
         except ValueError:
-            print("Not a valid function.")
+            if functionSelect == "s":
+                print("")
+                sleep(.25)
+                print("Goodbye!")
+            else:
+                print("Not a valid function.")
+                print("")
+                print("")
+                sleep(2)
             autoRepeat = True
         if autoRepeat == False:
             functionSelect = int(functionSelect)
             if functionSelect == 1:
-                if getunitCircleValues() == "False":
+                getValues = getunitCircleValues()
+                if getValues == "False":
                     functional = False
-                elif getunitCircleValues() == "True":
+                elif getValues == "True":
                     print("")
                 else:
-                    print(getunitCircleValues())
+                    print(getValues)
             elif functionSelect == 2:
-                if getPointstoPointSLopeValues() == "False":
+                getValues = getPointsToPointSlopeValues()
+                if getValues == "False":
                     functional = False
-                elif getPointstoPointSLopeValues() == "True":
+                elif getValues == "True":
                     print("")
                 else:
-                    print(getPointstoPointSLopeValues())
+                    print(getValues)
             elif functionSelect == 3:
-                if getSimplifyRadicalValues() == "False":
+                getValues = getSimplifyRadicalValues()
+                if getValues == "False":
                     functional = False
-                elif getSimplifyRadicalValues() == "True":
+                elif getValues == "True":
                     print("")
                 else:
-                    print(getSimplifyRadicalValues())
+                    print(getValues)
             elif functionSelect == 4:
-                if getQuadraticFormulaValues() == "False":
+                getValues = getQuadraticFormulaValues()
+                if getValues == "False":
                     functional = False
-                elif getQuadraticFormulaValues() == "True":
+                elif getValues == "True":
                     print("")
                 else:
-                    print(getQuadraticFormulaValues())
+                    print(getValues)
             elif functionSelect == 5:
-                if getSASValues() == "False":
+                getValues = getSASValues()
+                if getValues == "False":
                     functional = False
-                elif getSASValues() == "True":
+                elif getValues == "True":
                     print("")
                 else:
-                    print(getSASValues())
+                    print(getValues)
             sleep(.5)
             print("")
             repeat = input("Would you like to use another formula? (Yes/No) ")
-            if repeat.lower() == "yes" or repeat.lower() == "y":
+            if repeat.lower() == "yes" or repeat.lower() == "y" or repeat.lower() == "":
                 functional = True
+                print("")
             else:
+                sleep(.25)
+                print("Goodbye!")
                 functional = False
             
                 

@@ -701,6 +701,7 @@ def main():
     sleep(1)
     autoRepeat = False
     while functional:
+        autoRepeat = False
         print("These are the mathematcal helpers supported by this program: ")
         sleep(.5)
         print("")

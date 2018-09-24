@@ -636,6 +636,9 @@ def getSimplifyRadicalValues():
             print("Not an integer.")
             return "True"
         radical = int(radical)
+        if radical <= 0:
+            print("Invalid integer. Must be greater than 0.")
+            return "True"
         useFunction = True
         return simplifyRadical(radical)
     

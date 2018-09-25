@@ -497,9 +497,12 @@ def getunitCircleValues():
         if n == "s":
             return "False"
         try:
-            numerator = int(n)
+            numerator = float(n)
         except ValueError:
             print("Not an integer.")
+            return "True"
+        if (float(n) + 1) == n:
+            print("Number is too large.")
             return "True"
         else:
             useFunctionn = True
@@ -516,6 +519,9 @@ def getunitCircleValues():
                     return "True"
                 if (numerator * 180 / denominator) < 0 or (numerator * 180 / denominator) > 360:
                     print("Invalid input. Not on Unit Circle")
+                    return "True"
+                if (float(d) + 1) == float(d):
+                    print("Number is too large.")
                     return "True"
                 else:
                     useFunctiond = True
@@ -548,6 +554,9 @@ def getQuadraticFormulaValues():
         if a == 0:
             print("Invalid input.")
             return "True"
+        if (float(a) + 1) == float(a):
+            print("Number is too large.")
+            return "True"
         else:
             useFunctiona = True
             while useFunctionb == False:
@@ -558,6 +567,9 @@ def getQuadraticFormulaValues():
                     b = float(b)
                 except ValueError:
                     print("Not a valid number.")
+                    return "True"
+                if (float(b) + 1) == float(b):
+                    print("Number is too large.")
                     return "True"
                 else:
                     useFunctionb = True
@@ -570,7 +582,12 @@ def getQuadraticFormulaValues():
                         except ValueError:
                             print("Not a valid number.")
                             return "True"
-
+                        if (float(c) + 1) == float(c):
+                            print("Number is too large.")
+                            return "True"
+                        if (float(b)**2 - 4 * float(a) * float(c)) < 0:
+                            print("Imaginary discriminant.")
+                            return "True"
                         else:
                             useFunctionc = True
                             return quadraticFormula(a,b,c)
@@ -591,6 +608,9 @@ def getSASValues():
         if a <= 0:
             print("Invalid input.")
             return "True"
+        if (float(a) + 1) == float(a):
+            print("Number is too large.")
+            return "True"
         else:
             useFunctiona = True
             while useFunctionb == False:
@@ -604,6 +624,9 @@ def getSASValues():
                     return "True"
                 if b <= 0:
                     print("Invalid input.")
+                    return "True"
+                if (float(b) + 1) == float(b):
+                    print("Number is too large.")
                     return "True"
                 else:
                     useFunctionb = True
@@ -635,6 +658,9 @@ def getSimplifyRadicalValues():
         except ValueError:
             print("Not an integer.")
             return "True"
+        if (int(radical) + 1) == int(radical):
+            print("Number is too large.")
+            return "True"
         radical = int(radical)
         if radical <= 0:
             print("Invalid integer. Must be greater than 0.")
@@ -657,6 +683,9 @@ def getPointsToPointSlopeValues():
         except ValueError:
             print("Not a valid number.")
             return "True"
+        if (float(x1) + 1) == float(x1):
+            print("Number is too large.")
+            return "True"
         else:
             useFunctionx1 = True
             while useFunctiony1 == False:
@@ -667,6 +696,9 @@ def getPointsToPointSlopeValues():
                     y1 = float(y1)
                 except ValueError:
                     print("Not a valid number.")
+                    return "True"
+                if (float(y1) + 1) == float(y1):
+                    print("Number is too large.")
                     return "True"
                 else:
                     useFunctiony1 = True
@@ -679,6 +711,9 @@ def getPointsToPointSlopeValues():
                         except ValueError:
                             print("Not a valid number.")
                             return "True"
+                        if (float(x2) + 1) == float(x2):
+                            print("Number is too large.")
+                            return "True"
                         else:
                             useFunctionx2 = True
                             while useFunctiony2 == False:
@@ -689,6 +724,9 @@ def getPointsToPointSlopeValues():
                                     y2 = float(y2)
                                 except ValueError:
                                     print("Not a valid number.")
+                                    return "True"
+                                if (float(y2) + 1) == float(y2):
+                                    print("Number is too large.")
                                     return "True"
                                 else:
                                     useFunctiony2 = True

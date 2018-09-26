@@ -766,7 +766,7 @@ def main():
             if functionSelect == "s":
                 print("")
                 sleep(.25)
-                print("Goodbye!")
+                print("Goodbye!,Have a Happy Math Class")
             else:
                 print("Not a valid function.")
                 print("")
@@ -823,7 +823,7 @@ def main():
                 print("")
             else:
                 sleep(.25)
-                print("Goodbye!")
+                print("Goodbye!, Have a Happy Math Class")
                 functional = False
             
                 

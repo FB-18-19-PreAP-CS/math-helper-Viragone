@@ -817,14 +817,19 @@ def main():
                     print(getValues)
             sleep(.5)
             print("")
-            repeat = input("Would you like to use another formula? (Yes/No) ")
-            if repeat.lower() == "yes" or repeat.lower() == "y" or repeat.lower() == "":
-                functional = True
-                print("")
-            else:
+            if functional == False:
                 sleep(.25)
                 print("Goodbye!")
                 functional = False
+            else:
+                repeat = input("Would you like to use another formula? (Yes/No) ")
+                if repeat.lower() == "yes" or repeat.lower() == "y" or repeat.lower() == "":
+                    functional = True
+                    print("")
+                else:
+                    sleep(.25)
+                    print("Goodbye!")
+                    functional = False
             
                 
                         

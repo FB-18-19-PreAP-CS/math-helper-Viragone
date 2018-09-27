@@ -822,6 +822,10 @@ def main():
                 print("Goodbye!")
                 functional = False
             else:
+                print("Not a valid function.")
+                print("")
+                print("")
+                sleep(2)
                 repeat = input("Would you like to use another formula? (Yes/No) ")
                 if repeat.lower() == "yes" or repeat.lower() == "y" or repeat.lower() == "":
                     functional = True
